@@ -4,42 +4,36 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Animalerie
+namespace Animalerie.Models
 {
-    public class Chien : Animaux
+    public class Chat : Animaux
     {
-        
-        string Dresse { get; set; }
-        public Race Race;
-        public string Espece;
 
+        string Poillong;
+        string Griffecoupée;
+        public Caracteristiques caracteristiques;
 
-        public Chien()
+        public Chat(string nom, string sexe, int age, int poids, int taille, string poillong, string griffecoupée, Caracteristiques caracteristiques)
         {
-            
-        }
-
-        public Chien(string nom,string sexe, int age, int poids, int taille, string dresse, Race race,Couleur couleur)
-        {
-            
-            Espece = "Chien";
+            Espece = "Chat";
             Nom = nom;
-            this.Sexe = sexe;
+            Sexe = sexe;
+            Hage = age * 15;
             Age = age;
-            Hage = age*=7;
             Poids = poids;
             Taille = taille;
-            Dresse = dresse;
-            Race = race;
-            
+            Poillong = poillong;
+            Griffecoupée = griffecoupée;
+            this.caracteristiques = caracteristiques;
+
         }
         public override void Crier()
         {
-            Console.WriteLine("WAF WAF SUIS UN CHIEN");
+            Console.WriteLine("MIAW MIAW suis un chat askip");
         }
-        public void MyMansGonnaDie()
+        public void MyMansGonnaDie(Animaux probdeces)
         {
-            Probdeces *= 1;
+            Probdeces *= 0.5;
         }
         public override string ToString()
         {
@@ -51,8 +45,8 @@ namespace Animalerie
                    $"Human age : {Hage}\n" +
                    $"Poids : {Poids}\n" +
                    $"Taille : {Taille}\n" +
-                   $"Dresse : {Dresse}\n" +
-                   $"Race : {Race}\n" +
+                   $"Poil long : {Poillong}\n" +
+                   $"Griffe coupée : {Griffecoupée}\n" +
                    $"_______________________________\n";
         }
     }

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Animalerie
+namespace Animalerie.Models
 {
     public class Oiseaux : Animaux
     {
-       
+
         int Taille;
         string Voliere;
         string Petitecage;
@@ -16,21 +16,21 @@ namespace Animalerie
 
         public Oiseaux(string nom, string sexe, int age, int poids, int taille, string voliere, string petitecage, CouleurOiseaux couleurOiseaux)
         {
-           
+
             Espece = "Oiseau";
             Nom = nom;
-            this.Sexe = sexe;
+            Sexe = sexe;
             Age = age;
-            Hage = age*2;
+            Hage = age * 2;
             Poids = poids;
             Taille = taille;
             Voliere = voliere;
             Petitecage = petitecage;
-            this.CouleurOiseaux = couleurOiseaux;
+            CouleurOiseaux = couleurOiseaux;
         }
         public override void Crier()
         {
-            Console.WriteLine("PIAF PIAF PIAF PIAF je Piaf") ;
+            Console.WriteLine("PIAF PIAF PIAF PIAF je Piaf");
         }
         public void MyMansGonnaDie()
         {

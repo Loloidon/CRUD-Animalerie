@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Animalerie
+namespace Animalerie.Models
 {
     public class Animaux
     {
@@ -34,7 +34,7 @@ namespace Animalerie
             {
 
                 case 1:
-                    
+
                     AddDog(animaux);
 
                     break;
@@ -53,7 +53,7 @@ namespace Animalerie
 
             }
 
-            
+
         }
         public static Race ChooseRace()
         {
@@ -134,7 +134,7 @@ namespace Animalerie
             int nbTope = int.Parse(stringTope);
 
             return (CouleurOiseaux)nbTope - 1;
-            
+
         }
 
         public static void AfficheAnimaux(List<Animaux> animaux)
@@ -145,13 +145,13 @@ namespace Animalerie
             }
         }
 
-        public static List<int> CompteurAnimaux (List<Animaux> animaux)
+        public static List<int> CompteurAnimaux(List<Animaux> animaux)
         {
-            List<int> cpt = new List<int>();     
-            int cptchien=0, cptchat=0, cptoiseaux= 0;
-            foreach(Animaux anim in animaux)
-            switch (anim)
-            {
+            List<int> cpt = new List<int>();
+            int cptchien = 0, cptchat = 0, cptoiseaux = 0;
+            foreach (Animaux anim in animaux)
+                switch (anim)
+                {
                     case Chien:
                         cptchien++;
                         break;
@@ -164,9 +164,9 @@ namespace Animalerie
                         cptoiseaux++;
                         break;
 
-                        
-            
-            }
+
+
+                }
             cpt.Add(cptchien);
             cpt.Add(cptchat);
             cpt.Add(cptoiseaux);
@@ -174,12 +174,12 @@ namespace Animalerie
 
         }
 
-        public static void AfficheCompteurAnimaux(List<Animaux>animaux)
+        public static void AfficheCompteurAnimaux(List<Animaux> animaux)
         {
-            
+
             List<int> cpt = new List<int>();
             cpt = CompteurAnimaux(animaux);
-           Console.WriteLine($"Il y a {cpt[0]} Chien,{cpt[1]} chat,{cpt[2]} Oiseaux");
+            Console.WriteLine($"Il y a {cpt[0]} Chien,{cpt[1]} chat,{cpt[2]} Oiseaux");
 
         }
         static void AddDog(List<Animaux> animaux)
@@ -196,7 +196,7 @@ namespace Animalerie
             Race race = ChooseRace();
             Couleur couleur = ChooseCouleurCollier();
             animaux.Add(new Chien(name, sexe, age, poids, taille, dresser, race, couleur));
-          
+
         }
 
         static void AddChat(List<Animaux> animaux)
@@ -213,7 +213,7 @@ namespace Animalerie
             string griffecoupe = Console.ReadLine();
             Caracteristiques caracteristiques = ChooseCaracteristiques();
             animaux.Add(new Chat(name, sexe, age, poids, taille, poillong, griffecoupe, caracteristiques));
-          
+
         }
 
         static void AddOiseaux(List<Animaux> animaux)
@@ -229,7 +229,7 @@ namespace Animalerie
             string petitecage = Console.ReadLine();
             CouleurOiseaux couleurOiseaux = ChooseCouleurOiseau();
             animaux.Add(new Oiseaux(name, sexe, age, poids, taille, voliere, petitecage, couleurOiseaux));
-            
+
         }
 
         public static List<Animaux> Die(List<Animaux> animaux)
@@ -237,15 +237,15 @@ namespace Animalerie
             bool Isalive;
             int dé;
             Random r = new Random();
-            
-            List<Animaux>AnimauxMorts = new List<Animaux>();    
-            foreach(Animaux anim in animaux)
+
+            List<Animaux> AnimauxMorts = new List<Animaux>();
+            foreach (Animaux anim in animaux)
             {
-                
+
                 switch (anim)
                 {
                     case Chien:
-                        if (r.Next(0, (int)(100 / 1) +1)%(100/1) == 0)
+                        if (r.Next(0, 100 / 1 + 1) % (100 / 1) == 0)
                         {
                             AnimauxMorts.Add(anim);
                         }
@@ -259,7 +259,7 @@ namespace Animalerie
 
                     case Oiseaux:
 
-                        if (r.Next(0, (int)(100 / 3)) == 0)
+                        if (r.Next(0, 100 / 3) == 0)
                         {
                             AnimauxMorts.Add(anim);
                         }
@@ -270,9 +270,9 @@ namespace Animalerie
             return AnimauxMorts;
 
         }
-        public static void AfficherMorts(List<Animaux>AnimauxMorts,List<Animaux>animaux)
+        public static void AfficherMorts(List<Animaux> AnimauxMorts, List<Animaux> animaux)
         {
-            foreach(Animaux morts in AnimauxMorts)
+            foreach (Animaux morts in AnimauxMorts)
             {
                 Console.WriteLine(morts.Nom);
                 animaux.Remove(morts);
@@ -288,7 +288,7 @@ namespace Animalerie
 
             do
             {
-
+                
                 Console.WriteLine("|| Appuyer sur 0 pour sortir || 1 pour ajouter un animal || 2 pour afficher touts les animaux || 3 pour ajouter un animal || 4 pour afficher le nombre d'animal || 5 pour passer la nuit");
                 input = int.Parse(Console.ReadLine());
                 StringBuilder sb = new StringBuilder();
@@ -298,20 +298,24 @@ namespace Animalerie
                 {
 
                     case 0:
+                        Console.Clear();
                         done = true;
                         Console.WriteLine("Aurevoir");
 
                         break;
 
                     case 1:
-                        Animaux.Add(animaux);
+                        Console.Clear();
+                        Add(animaux);
                         break;
 
                     case 2:
-                        Animaux.AfficheAnimaux(animaux);
+                        
+                        AfficheAnimaux(animaux);
 
                         break;
                     case 3:
+                        Console.Clear();
                         Console.WriteLine("Entrez son nom || sexe || âge || son poids en kg || sa taille en cm || Poillong oui/non || Griffecoupée oui/non || et sa caractéristiques ||");
                         name = Console.ReadLine();
                         sexe = Console.ReadLine();
@@ -323,13 +327,15 @@ namespace Animalerie
 
                         break;
                     case 4:
-                        Animaux.AfficheCompteurAnimaux(animaux);
+                        Console.Clear();
+                        AfficheCompteurAnimaux(animaux);
 
 
                         break;
                     case 5:
-                        Animaux.AfficherMorts(Animaux.Die(animaux), animaux);
-
+                        Console.Clear();
+                        AfficherMorts(Die(animaux), animaux);
+                        
                         break;
                 }
 

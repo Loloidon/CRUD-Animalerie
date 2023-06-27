@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Animalerie
+namespace Animalerie.Models
 {
 
     public enum Caracteristiques
@@ -21,6 +21,6 @@ namespace Animalerie
     }
     public enum CouleurOiseaux
     {
-        Tricolore,Noir,Brun,Orange,Vert
+        Tricolore, Noir, Brun, Orange, Vert
     }
 }

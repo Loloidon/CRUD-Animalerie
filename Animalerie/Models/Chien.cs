@@ -4,40 +4,47 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Animalerie
+namespace Animalerie.Models
 {
-    public class Chat : Animaux
+    public class Chien : Animaux
     {
-       
-        string Poillong;
-        string Griffecoupée;
-        public Caracteristiques caracteristiques;
 
-        public Chat(string nom, string sexe, int age, int poids, int taille, string poillong, string griffecoupée, Caracteristiques caracteristiques)
+        string Dresse { get; set; }
+        public Race Race;
+        public string Espece;
+
+
+        public Chien()
         {
-            Espece = "Chat";
+
+        }
+
+        public Chien(string nom, string sexe, int age, int poids, int taille, string dresse, Race race, Couleur couleur)
+        {
+
+            Espece = "Chien";
             Nom = nom;
             Sexe = sexe;
-            Hage = age*15;
             Age = age;
+            Hage = age *= 7;
             Poids = poids;
             Taille = taille;
-            Poillong = poillong;
-            Griffecoupée = griffecoupée;
-            this.caracteristiques = caracteristiques;
-            
+            Dresse = dresse;
+            Race = race;
+
         }
         public override void Crier()
         {
-            Console.WriteLine("MIAW MIAW suis un chat askip") ;
+            Console.WriteLine("WAF WAF SUIS UN CHIEN");
         }
-        public void MyMansGonnaDie(Animaux probdeces)
+        public void MyMansGonnaDie()
         {
-            Probdeces *=0.5;
+            Probdeces *= 1;
         }
         public override string ToString()
         {
             return $"_______________________________\n" +
+                    
                    $"Espece : {Espece}\n" +
                    $"Name : {Nom}\n" +
                    $"Sexe : {Sexe}\n" +
@@ -45,8 +52,8 @@ namespace Animalerie
                    $"Human age : {Hage}\n" +
                    $"Poids : {Poids}\n" +
                    $"Taille : {Taille}\n" +
-                   $"Poil long : {Poillong}\n" +
-                   $"Griffe coupée : {Griffecoupée}\n" +
+                   $"Dresse : {Dresse}\n" +
+                   $"Race : {Race}\n" +
                    $"_______________________________\n";
         }
     }
