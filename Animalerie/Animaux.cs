@@ -145,8 +145,41 @@ namespace Animalerie
             }
         }
 
-        public static void CompteurAnimaux()
+        public static List<int> CompteurAnimaux (List<Animaux> animaux)
         {
+            List<int> cpt = new List<int>();     
+            int cptchien=0, cptchat=0, cptoiseaux= 0;
+            foreach(Animaux anim in animaux)
+            switch (anim)
+            {
+                    case Chien:
+                        cptchien++;
+                        break;
+
+                    case Chat:
+                        cptchat++;
+                        break;
+
+                    case Oiseaux:
+                        cptoiseaux++;
+                        break;
+
+                        
+            
+            }
+            cpt.Add(cptchien);
+            cpt.Add(cptchat);
+            cpt.Add(cptoiseaux);
+            return cpt;
+
+        }
+
+        public static void AfficheCompteurAnimaux(List<Animaux>animaux)
+        {
+            
+            List<int> cpt = new List<int>();
+            cpt = CompteurAnimaux(animaux);
+           Console.WriteLine($"Il y a {cpt[0]} Chien,{cpt[1]} chat,{cpt[2]} Oiseaux");
 
         }
         static void AddDog(List<Animaux> animaux)
@@ -163,7 +196,7 @@ namespace Animalerie
             Race race = ChooseRace();
             Couleur couleur = ChooseCouleurCollier();
             animaux.Add(new Chien(name, sexe, age, poids, taille, dresser, race, couleur));
-            int cptdog++;
+          
         }
 
         static void AddChat(List<Animaux> animaux)
@@ -180,6 +213,7 @@ namespace Animalerie
             string griffecoupe = Console.ReadLine();
             Caracteristiques caracteristiques = ChooseCaracteristiques();
             animaux.Add(new Chat(name, sexe, age, poids, taille, poillong, griffecoupe, caracteristiques));
+          
         }
 
         static void AddOiseaux(List<Animaux> animaux)
@@ -195,6 +229,112 @@ namespace Animalerie
             string petitecage = Console.ReadLine();
             CouleurOiseaux couleurOiseaux = ChooseCouleurOiseau();
             animaux.Add(new Oiseaux(name, sexe, age, poids, taille, voliere, petitecage, couleurOiseaux));
+            
         }
+
+        public static List<Animaux> Die(List<Animaux> animaux)
+        {
+            bool Isalive;
+            int dé;
+            Random r = new Random();
+            
+            List<Animaux>AnimauxMorts = new List<Animaux>();    
+            foreach(Animaux anim in animaux)
+            {
+                
+                switch (anim)
+                {
+                    case Chien:
+                        if (r.Next(0, (int)(100 / 1) +1)%(100/1) == 0)
+                        {
+                            AnimauxMorts.Add(anim);
+                        }
+                        break;
+                    case Chat:
+                        if (r.Next(0, (int)(100 / 0.5)) == 0)
+                        {
+                            AnimauxMorts.Add(anim);
+                        }
+                        break;
+
+                    case Oiseaux:
+
+                        if (r.Next(0, (int)(100 / 3)) == 0)
+                        {
+                            AnimauxMorts.Add(anim);
+                        }
+
+                        break;
+                }
+            }
+            return AnimauxMorts;
+
+        }
+        public static void AfficherMorts(List<Animaux>AnimauxMorts,List<Animaux>animaux)
+        {
+            foreach(Animaux morts in AnimauxMorts)
+            {
+                Console.WriteLine(morts.Nom);
+                animaux.Remove(morts);
+            }
+        }
+        public static void Menu(List<Animaux> animaux)
+        {
+            int input;
+            bool done = false;
+            string name, dresser, sexe, result = "", espece = "", voliere, petitecage, poillong, griffecoupe;
+            int age, hage = 0, poids, taille;
+
+
+            do
+            {
+
+                Console.WriteLine("|| Appuyer sur 0 pour sortir || 1 pour ajouter un animal || 2 pour afficher touts les animaux || 3 pour ajouter un animal || 4 pour afficher le nombre d'animal || 5 pour passer la nuit");
+                input = int.Parse(Console.ReadLine());
+                StringBuilder sb = new StringBuilder();
+
+
+                switch (input)
+                {
+
+                    case 0:
+                        done = true;
+                        Console.WriteLine("Aurevoir");
+
+                        break;
+
+                    case 1:
+                        Animaux.Add(animaux);
+                        break;
+
+                    case 2:
+                        Animaux.AfficheAnimaux(animaux);
+
+                        break;
+                    case 3:
+                        Console.WriteLine("Entrez son nom || sexe || âge || son poids en kg || sa taille en cm || Poillong oui/non || Griffecoupée oui/non || et sa caractéristiques ||");
+                        name = Console.ReadLine();
+                        sexe = Console.ReadLine();
+                        age = int.Parse(Console.ReadLine());
+                        poids = int.Parse(Console.ReadLine());
+                        taille = int.Parse(Console.ReadLine());
+                        poillong = Console.ReadLine();
+                        griffecoupe = Console.ReadLine();
+
+                        break;
+                    case 4:
+                        Animaux.AfficheCompteurAnimaux(animaux);
+
+
+                        break;
+                    case 5:
+                        Animaux.AfficherMorts(Animaux.Die(animaux), animaux);
+
+                        break;
+                }
+
+            } while (!done);
+        }
+
     }
 }
